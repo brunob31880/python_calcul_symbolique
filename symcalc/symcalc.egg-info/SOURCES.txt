@@ -1,0 +1,8 @@
+setup.py
+symcalc/__init__.py
+symcalc/core.py
+symcalc/simplify.py
+symcalc.egg-info/PKG-INFO
+symcalc.egg-info/SOURCES.txt
+symcalc.egg-info/dependency_links.txt
+symcalc.egg-info/top_level.txt
