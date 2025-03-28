@@ -5,6 +5,8 @@ from functools import reduce
 class Expr:
    def diff(self,var:str) -> "Expr":
        raise NotImplementedError()
+   def eval(self, env: dict[str, float]) -> float:
+        raise NotImplementedError()
 class Var(Expr):
    def __init__(self,name:str):
        self.name=name
@@ -14,6 +16,12 @@ class Var(Expr):
     return self
    def __str__(self):
     return self.name
+   def eval(self, env: dict[str, float]) -> float:
+        if self.name in env:
+            return env[self.name]
+        else:
+            raise ValueError(f"Variable '{self.name}' non fournie dans env")
+
 class Const(Expr):
    def __init__(self,value:int):
        self.value=value
@@ -23,6 +31,8 @@ class Const(Expr):
     return self
    def __str__(self):
        return str(self.value)
+   def eval(self, env: dict[str, float]) -> float:
+       return self.value
 class Add(Expr):
    def __init__(self,value1:Expr,value2:Expr):
        self.value1=value1
@@ -40,6 +50,8 @@ class Add(Expr):
        return simplify_add(Add(left, right))
    def __str__(self):
        return f"({self.value1}) + ({self.value2})"
+   def eval(self, env: dict[str, float]) -> float:
+        return self.value1.eval(env) + self.value2.eval(env)
 class Mul(Expr):
     def __init__(self,value1:Expr,value2:Expr):
        self.value1=value1
@@ -60,6 +72,8 @@ class Mul(Expr):
        return Mul(left, right)
     def __str__(self):
         return f"({self.value1}) * ({self.value2})"
+    def eval(self, env: dict[str, float]) -> float:
+        return self.value1.eval(env) * self.value2.eval(env)
 if __name__ == '__main__':
     expr1=Add(Var("x"),Const(2))
     expr2=Var("x")
