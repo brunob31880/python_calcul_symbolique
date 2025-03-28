@@ -1,8 +1,13 @@
+exemple_utilisation.py
 setup.py
 symcalc/__init__.py
 symcalc/core.py
+symcalc/parser.py
 symcalc/simplify.py
 symcalc.egg-info/PKG-INFO
 symcalc.egg-info/SOURCES.txt
 symcalc.egg-info/dependency_links.txt
 symcalc.egg-info/top_level.txt
+symcalc/__pycache__/__init__.cpython-312.pyc
+symcalc/__pycache__/core.cpython-312.pyc
+symcalc/__pycache__/simplify.cpython-312.pyc
